@@ -1,0 +1,17 @@
+#welcomepage {
+    height: 100vh;
+    background-color: black;
+  }
+  
+.text {
+    color: white;
+    width: 1600px;
+    margin: 0 auto;
+    font-family: "Helvetica Neue", "Arial", sans-serif;
+    font-style: italic;
+    font-weight: 200;
+    font-variant-ligatures: normal;
+    font-size: 11rem;
+    letter-spacing: 1px;
+    
+}
