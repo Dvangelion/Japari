@@ -101,7 +101,7 @@ func (h *Handlers) AuthenticationSuccess(Username, Password string) bool {
 
 func (h *Handlers) HandleLogin(w http.ResponseWriter, r *http.Request) {
 	header := w.Header()
-	header.Add("Access-Control-Allow-Origin", "http://localhost:3000")
+	header.Add("Access-Control-Allow-Origin", "*")
 	header.Add("Access-Control-Allow-Methods", "DELETE, POST, GET, OPTIONS")
 	header.Add("Access-Control-Allow-Headers", "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With")
 	if r.Method == "OPTIONS" {
@@ -122,7 +122,6 @@ func (h *Handlers) HandleLogin(w http.ResponseWriter, r *http.Request) {
 				return
 			}
 			w.Header().Set("Content-Type", "application/json; charset=utf-8")
-			//w.WriteHeader(http.StatusOK)
 			w.Write(loginresponse)
 			//w.Write([]byte("Login Success, welcome"))
 		} else {
@@ -133,7 +132,6 @@ func (h *Handlers) HandleLogin(w http.ResponseWriter, r *http.Request) {
 				return
 			}
 			w.Header().Set("Content-Type", "application/json; charset=utf-8")
-			//w.WriteHeader(http.StatusOK)
 			w.Write(loginresponse)
 			//w.Write([]byte("Password incorrect, login failed"))
 		}

@@ -7,7 +7,6 @@ import thunkMiddleware from 'redux-thunk';
 import * as serviceWorker from './serviceWorker';
 import './index.css';
 import rootreducer from './reducers/reducers'
-import { Register } from './actions'
 
 //const middleware = [ thunk ]
 

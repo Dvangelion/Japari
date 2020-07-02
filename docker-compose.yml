@@ -2,7 +2,7 @@ version: "3.8"
 services:
 
   reactfrontend:
-    image: reactfrontend
+    image: dvangelion/reactfrontend
     #restart: always
     ports:
         - "3000:3000"
@@ -18,7 +18,7 @@ services:
             max-file: "10"
 
   mysqldatabase:
-    image: mysqldatabase
+    image: dvangelion/mysqldatabase
     container_name: mysqldatabase
     ports: 
         - "12345:3306"
@@ -37,7 +37,7 @@ services:
         max-file: "10"
 
   gobackend:
-    image: gobackend-deploy
+    image: dvangelion/gobackend
     #restart: always
     ports: 
         - "8080:8080"

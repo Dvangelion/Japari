@@ -115,9 +115,5 @@ function mapStateToProps(state) {
     return { UsernameExist, BackendFailure, RegisterSuccess }
 }
 
-function mapDispatchToProps(dispatch) {
-    return {
-        Register: (Username, Password) => dispatch(Register(Username, Password))
-    }
-}
+
 export default connect(mapStateToProps)(RegisterPage)

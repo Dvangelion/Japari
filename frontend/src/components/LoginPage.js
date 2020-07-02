@@ -85,7 +85,7 @@ class LoginPage extends React.Component{
             {/* Flipper flip the whole thing, front card and back card */}
             <div class="flipper" ref={this.flipperRef}>
                 <div class="FRONTCARD">
-                <img src={japari} style={{position: "relative", top:"50px", width:"250px", height:"185px"}} onClick={this.showPasswordform}></img> 
+                <img src={japari} alt="japarilogo" style={{position: "relative", top:"50px", width:"250px", height:"185px"}} onClick={this.showPasswordform}></img> 
                 <div id="logotext"></div>
                 <div class="flipinfo" id="info" onClick={this.handleFlip}></div>
                 <div id="secondenter" onClick={this.handleLogin} style={{display: this.state.show_secondenter ? 'block': 'none'}}/>

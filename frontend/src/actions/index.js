@@ -3,7 +3,6 @@
 import history from '../utils/history'
 //import { useHistory } from "react-router-dom";
 
-export const FLIPCARD = 'FLIPCARD'
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
 export const LOGIN_FAILURE = 'LOGIN_FAILURE'
 export const REGISTER_SUCCESS = 'REGISTER_SUCCESS'
@@ -16,9 +15,8 @@ export const RECEIVE_LOGIN = 'RECEIVE_LOGIN'
 export const GET_USERNAME = 'GET_USERNAME'
 export const SHOW_DEMO = 'SHOW_DEMO'
 
-let loginAttempt = 0;
-//TODO: REGISTER: Sync
-//      LOGIN: Async
+//let loginAttempt = 0;
+
 
 //register: register response json data
 // return data:
@@ -59,29 +57,6 @@ export function GetUsername(username) {
     }
 }
 
-function Register_Success(Username) {
-    return {
-        type: REGISTER_SUCCESS,
-        //RegisterSuccess: register.sucessful_register
-        Username
-    }
-}
-
-function Register_Failure(register){
-    return {
-        type: REGISTER_FAILURE,
-        ShowRegFailureAlert: true
-        //register_attempt: register.register_attempt
-    }
-}
-
-function requestRegister(register) {
-    return {
-        type: REQUEST_REGISTER,
-        register
-    }
-}
-
 function handleRegisterResponse(json) {
     //console.log(json.UsernameExsit)
 
@@ -112,8 +87,6 @@ function handleLoginrResponse(json) {
     if ((json.LoginSuccess) === true) {
         alert('LOGIN SUCCESS')
         history.push('/welcome')
-        //dispatch(Login_Success(username))
-        //window.location.reload()
         
     }
 
@@ -129,11 +102,6 @@ function handleLoginrResponse(json) {
 }
 
 
-
-// const BackendFailure = (error) => (dispatch) => {
-//     dispatch( { type: BACKEND_FAILURE })
-//     return Promise.resolve()
-// }
 function BackendFailure(error) {
     alert('BACKENDFAILURE')
     return {
@@ -152,12 +120,11 @@ export function Register(username, password){
             redirect: 'follow'        
         };
 
-        //return fetch("http://gobackend:8080/register", RequestOptions)
-        return fetch("http://localhost:8080/register", RequestOptions)
+        return fetch("http://ec2-18-218-223-140.us-east-2.compute.amazonaws.com:8080/register", RequestOptions)
+        //return fetch("http://localhost:8080/register", RequestOptions)
         .then(response => response.json())
         .then(json => dispatch(handleRegisterResponse(json)),
               error => dispatch(BackendFailure(error)))
-        //.then(json => console.log(json))
     }
 }
 
@@ -173,8 +140,8 @@ export function Login(username, password){
             redirect: 'follow'        
         };
 
-        //return fetch("http://gobackend:8080/login", RequestOptions)
-        return fetch("http://localhost:8080/login", RequestOptions)
+        return fetch("http://ec2-18-218-223-140.us-east-2.compute.amazonaws.com:8080/login", RequestOptions)
+        //return fetch("http://localhost:8080/login", RequestOptions)
         .then(response => response.json())
         .then(json => dispatch(handleLoginrResponse(json, username)),
               error => dispatch(BackendFailure(error)))
@@ -202,62 +169,3 @@ export function Login(username, password){
 //     ipAddress: ipaddress
 // }
 
-function requestLogin(login) {
-    return {
-        type: REQUEST_LOGIN,
-        login
-    }
-}
-
-function Login_Success(Username){
-    //console.log('login success', Username)
-    return {
-        type: LOGIN_SUCCESS,
-        //login_attempt: login.login_attempt,
-        //login_success: login.sucessful_login
-        Username
-    }
-}
-
-function Login_Failure(login){
-    return {
-        type: LOGIN_FAILURE,
-        login_attempt: loginAttempt,
-        login_success: false
-    }
-}
-
-// export function Login(login, password, username) {
-//     //const ipAddress = getIPaddress(ifaces)
-//     const RequestOptions = {
-//         method: 'POST',
-//         headers: {'Content-type': 'application/json'},
-//         body: JSON.stringify({ username, password, ipAddress })
-//     };
-//     return function (dispatch) {
-//         dispatch(requestLogin(login))
-//         return fetch('${config.apiUrl}'/loginauthentication, RequestOptions)
-//         .then(response => response.json)
-//         .then(login => dispatch(Login_Sucess(login)),
-//               error => dispatch((Login_Failure(login))))
-//     }
-// }
-
-
-// function handleResponse(response) {
-//     return response.text().then(text => {
-//         const data = text && JSON.parse(text);
-//         if (!response.ok) {
-//             if (response.status === 401) {
-//                 // auto logout if 401 response returned from api
-//                 logout();
-//                 location.reload(true);
-//             }
-
-//             const error = (data && data.message) || response.statusText;
-//             return Promise.reject(error);
-//         }
-
-//         return data;
-//     });
-// }

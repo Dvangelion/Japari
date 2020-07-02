@@ -10,12 +10,6 @@ import (
 	"github.com/jmoiron/sqlx"
 )
 
-//const message = "Hello this is regpage"
-
-// var (
-// 	CertFile = "server.crt"
-// 	KeyFile  = "server.key"
-// )
 type Registration struct {
 	Username string
 	Password string
@@ -66,12 +60,10 @@ func (h *Handlers) GetUsernamePassword(w http.ResponseWriter, r *http.Request) (
 
 	log.Println(t.Username)
 	log.Println(t.Password)
-	// log.Println(reflect.TypeOf(t.Password).String())
 	return t.Username, t.Password
 }
 
 func (h *Handlers) CheckUsernameExsit(Username string) bool {
-	//TODO: Change password field to os.getenv
 	log.Print(MySQLconfig)
 	db, err := sqlx.Connect("mysql", MySQLconfig)
 	if err != nil {
@@ -79,15 +71,8 @@ func (h *Handlers) CheckUsernameExsit(Username string) bool {
 	}
 
 	var userCount int
-	//query := strings.Join([]string{"SELECT COUNT(1) FROM users WHERE username = ", "'", Username, "'"}, "")
-	//db.Select(&esult, "SELECT COUNT(1) FROM users WHERE username =$1", Username)
-	//db.Get(&result, "SELECT COUNT(1) FROM users WHERE username = ?", Username)
 
 	db.Get(&userCount, "SELECT COUNT(1) FROM users WHERE username = ?", Username)
-
-	// if err != nil {
-	// 	log.Printf("Get username failed")
-	// }
 
 	if userCount == 1 {
 		return true
@@ -108,14 +93,10 @@ func (h *Handlers) UpdateDatabase(Username, Password string) {
 func (h *Handlers) HandleRegister(w http.ResponseWriter, r *http.Request) {
 	//log.Print(r)
 	header := w.Header()
-	header.Add("Access-Control-Allow-Origin", "http://localhost:3000")
+	header.Add("Access-Control-Allow-Origin", "*")
 	header.Add("Access-Control-Allow-Methods", "DELETE, POST, GET, OPTIONS")
 	header.Add("Access-Control-Allow-Headers", "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With")
-	// w.Header().Set("Access-Control-Allow-Origin", "*")
-	// w.Header().Set("Access-Control-Allow-Credentials", "true")
-	// w.Header().Set("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
-	// w.Header().Set("Access-Control-Allow-Headers", "Origin, Content-Type, Accept")
-	//w.Header().Set("Access-Control-Allow-Methods", "OPTIONS, GET, PUT, POST, DELETE")
+
 	if r.Method == "OPTIONS" {
 		w.WriteHeader(http.StatusOK)
 		return

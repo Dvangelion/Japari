@@ -1,5 +1,5 @@
 
-CREATE DATABASE japari;
+CREATE DATABASE IF NOT EXISTS japari;
 
 USE japari;
 
