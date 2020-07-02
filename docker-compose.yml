@@ -3,7 +3,7 @@ services:
 
   reactfrontend:
     image: dvangelion/reactfrontend
-    #restart: always
+    restart: on-failure
     ports:
         - "3000:3000"
     networks:
@@ -20,6 +20,7 @@ services:
   mysqldatabase:
     image: dvangelion/mysqldatabase
     container_name: mysqldatabase
+    restart: on-failure
     ports: 
         - "12345:3306"
     volumes: 
@@ -38,7 +39,7 @@ services:
 
   gobackend:
     image: dvangelion/gobackend
-    #restart: always
+    restart: on-failure
     ports: 
         - "8080:8080"
     networks:
@@ -54,4 +55,3 @@ volumes:
     my-datavolume:
 networks: 
     overlay:
-    #backend:

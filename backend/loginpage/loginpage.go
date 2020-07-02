@@ -51,9 +51,6 @@ func (h *Handlers) GetUsernamePassword(w http.ResponseWriter, r *http.Request) (
 		log.Printf("Check the datafield in request, can't parse username or password.")
 	}
 
-	//log.Println(t.Username)
-	//log.Println(t.Password)
-	// log.Println(reflect.TypeOf(t.Password).String())
 	return t.Username, t.Password
 }
 
@@ -65,15 +62,8 @@ func (h *Handlers) CheckUsernameExsit(Username string) bool {
 	}
 
 	var userCount int
-	//query := strings.Join([]string{"SELECT COUNT(1) FROM users WHERE username = ", "'", Username, "'"}, "")
-	//db.Select(&esult, "SELECT COUNT(1) FROM users WHERE username =$1", Username)
-	//db.Get(&result, "SELECT COUNT(1) FROM users WHERE username = ?", Username)
 
 	db.Get(&userCount, "SELECT COUNT(1) FROM users WHERE username = ?", Username)
-
-	// if err != nil {
-	// 	log.Printf("Get username failed")
-	// }
 
 	if userCount == 1 {
 		return true

@@ -10,11 +10,6 @@ import (
 	"./server"
 )
 
-// var (
-// 	CertFile = "server.crt"
-// 	KeyFile  = "server.key"
-// )
-
 func main() {
 	logger := log.New(os.Stdout, "kemetrics ", log.LstdFlags|log.LstdFlags)
 

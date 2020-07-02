@@ -1,12 +1,12 @@
 # Japari
 
-This is a demo project inspired by piggymetrics, which demonstrates the Microservice architecture pattern using go, react, mysql and docker. 
+This is a demo project inspired by piggymetrics, which demonstrates a fullstack website application using go, react, mysql and docker. 
 
 ![](https://user-images.githubusercontent.com/12382740/86407124-6ab15b80-bc82-11ea-918e-ec209ca5de6e.gif)
 
 ## Functional Services
 
-Japari can be decomposed into three microservices. The frontend service provides UI for account login/registration. Backend service validates the user account and stores account info into database. Database service persistent store user account in MySQL database. All of them are deployable in docker containers. 
+Japari can be decomposed into three services. The frontend service provides UI for account login/registration. Backend service validates the user account and stores account info into database. Database service persistent store user account in MySQL database. All of them are deployable in docker containers. 
 
 Method	| Path	| Description	| 
 ------------- | ------------------------- | ------------- |
