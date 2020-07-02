@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"log"
 	"net/http"
-	"os"
 	"time"
 
 	_ "github.com/go-sql-driver/mysql"
@@ -28,7 +27,8 @@ type Handlers struct {
 
 //USERNAME:PASSWORD@/DBNAME
 var (
-	MySQLconfig = os.Getenv("MYSQLCONFIG")
+	//MySQLconfig = os.Getenv("MYSQLCONFIG")
+	MySQLconfig = "japari:password@tcp(mysqldatabase)/japari"
 )
 
 func (h *Handlers) Logger(next http.HandlerFunc) http.HandlerFunc {
@@ -51,8 +51,8 @@ func (h *Handlers) GetUsernamePassword(w http.ResponseWriter, r *http.Request) (
 		log.Printf("Check the datafield in request, can't parse username or password.")
 	}
 
-	log.Println(t.Username)
-	log.Println(t.Password)
+	//log.Println(t.Username)
+	//log.Println(t.Password)
 	// log.Println(reflect.TypeOf(t.Password).String())
 	return t.Username, t.Password
 }

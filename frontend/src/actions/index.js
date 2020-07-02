@@ -152,6 +152,7 @@ export function Register(username, password){
             redirect: 'follow'        
         };
 
+        //return fetch("http://gobackend:8080/register", RequestOptions)
         return fetch("http://localhost:8080/register", RequestOptions)
         .then(response => response.json())
         .then(json => dispatch(handleRegisterResponse(json)),
@@ -172,6 +173,7 @@ export function Login(username, password){
             redirect: 'follow'        
         };
 
+        //return fetch("http://gobackend:8080/login", RequestOptions)
         return fetch("http://localhost:8080/login", RequestOptions)
         .then(response => response.json())
         .then(json => dispatch(handleLoginrResponse(json, username)),

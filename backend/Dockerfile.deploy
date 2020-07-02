@@ -1,0 +1,21 @@
+FROM golang:1.14 AS builder
+
+#WORKDIR /go/src/app
+
+COPY . .
+RUN go get "github.com/go-sql-driver/mysql"
+RUN go get "github.com/jmoiron/sqlx"
+
+RUN go build -o gobackend
+
+
+FROM debian:buster
+
+
+COPY --chown=0:0 --from=builder /go/gobackend /go/
+#RUN go get "github.com/go-sql-driver/mysql"
+#RUN go get "github.com/jmoiron/sqlx"
+
+EXPOSE 8080
+
+CMD ["./go/gobackend"]

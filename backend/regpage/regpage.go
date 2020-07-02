@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"log"
 	"net/http"
-	"os"
 	"time"
 
 	_ "github.com/go-sql-driver/mysql"
@@ -34,7 +33,8 @@ type Handlers struct {
 
 //USERNAME:PASSWORD@/DBNAME
 var (
-	MySQLconfig = os.Getenv("MYSQLCONFIG")
+	//MySQLconfig = os.Getenv("MYSQLCONFIG")
+	MySQLconfig = "japari:password@tcp(mysqldatabase)/japari"
 )
 
 func (h *Handlers) Logger(next http.HandlerFunc) http.HandlerFunc {
@@ -72,6 +72,7 @@ func (h *Handlers) GetUsernamePassword(w http.ResponseWriter, r *http.Request) (
 
 func (h *Handlers) CheckUsernameExsit(Username string) bool {
 	//TODO: Change password field to os.getenv
+	log.Print(MySQLconfig)
 	db, err := sqlx.Connect("mysql", MySQLconfig)
 	if err != nil {
 		log.Fatalln(err)

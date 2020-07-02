@@ -1,0 +1,57 @@
+version: "3.8"
+services:
+
+  reactfrontend:
+    image: reactfrontend
+    #restart: always
+    ports:
+        - "3000:3000"
+    networks:
+        - overlay
+    depends_on:
+        - gobackend
+    stdin_open: 
+        true
+    logging: 
+        options: 
+            max-size: "10m"
+            max-file: "10"
+
+  mysqldatabase:
+    image: mysqldatabase
+    container_name: mysqldatabase
+    ports: 
+        - "12345:3306"
+    volumes: 
+        - my-datavolume:/var/lib/mysql
+    networks:
+        - overlay
+    environment: 
+      MYSQL_ROOT_PASSWORD: $MYSQL_ROOT_PASSWORD
+      MYSQL_DATABASE: $MYSQL_DATABASE
+      MYSQL_USER: $MYSQL_USER
+      MYSQL_PASSWORD: $MYSQL_PASSWORD
+    logging: 
+      options: 
+        max-size: "10m"
+        max-file: "10"
+
+  gobackend:
+    image: gobackend-deploy
+    #restart: always
+    ports: 
+        - "8080:8080"
+    networks:
+        - overlay
+    depends_on: 
+      - mysqldatabase
+    logging: 
+      options: 
+        max-size: "10m"
+        max-file: "10"
+
+volumes: 
+    my-datavolume:
+networks: 
+    overlay:
+    #backend:
