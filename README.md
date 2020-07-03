@@ -1,6 +1,6 @@
 # Japari
 
-This is a demo project inspired by piggymetrics, which demonstrates a fullstack website application using go, react, mysql and docker. 
+This is a demo project inspired by [piggymetrics](https://github.com/sqshq/piggymetrics), which demonstrates a fullstack website application using go, react, mysql and docker. 
 
 ![](https://user-images.githubusercontent.com/12382740/86407124-6ab15b80-bc82-11ea-918e-ec209ca5de6e.gif)
 
